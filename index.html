@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="一个简单、清爽的每日习惯打卡页面。"
+    />
+    <title>今日习惯</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <a class="brand" href="#" aria-label="今日习惯首页">
+          <span class="brand-mark" aria-hidden="true">🌿</span>
+          <span class="brand-copy">
+            <strong>今日习惯</strong>
+            <small>慢慢做，坚持就会发生</small>
+          </span>
+        </a>
+        <time class="today-label" id="todayLabel"></time>
+      </header>
+
+      <main>
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-copy">
+            <p class="eyebrow">DAILY CHECK-IN</p>
+            <h1 id="heroTitle">今天，也照顾好自己。</h1>
+            <p class="hero-note" id="heroNote">从一件小事开始吧。</p>
+          </div>
+
+          <div class="progress-summary" aria-label="今日打卡进度">
+            <div class="progress-visual">
+              <div class="progress-visual-top">
+                <strong id="completedCount">0</strong>
+                <span>项完成</span>
+              </div>
+              <div
+                class="progress-track"
+                id="progressRing"
+                role="progressbar"
+                aria-label="今日完成进度"
+                aria-valuemin="0"
+                aria-valuemax="0"
+                aria-valuenow="0"
+              >
+                <span class="progress-fill"></span>
+              </div>
+            </div>
+            <div class="progress-copy">
+              <p>今日进度</p>
+              <strong id="progressText">0 / 0</strong>
+              <span id="remainingText">先添加一个习惯</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="tracker" aria-labelledby="habitSectionTitle">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">TODAY</p>
+              <h2 id="habitSectionTitle">今天的清单</h2>
+            </div>
+            <p class="section-summary" id="sectionSummary" aria-live="polite">
+              还没有习惯
+            </p>
+          </div>
+
+          <form class="add-habit-form" id="habitForm" autocomplete="off">
+            <label class="sr-only" for="habitInput">添加一个习惯</label>
+            <span class="input-icon" aria-hidden="true">＋</span>
+            <input
+              id="habitInput"
+              name="habit"
+              type="text"
+              maxlength="24"
+              placeholder="添加想坚持的习惯，例如：早睡"
+              aria-describedby="formMessage"
+              required
+            />
+            <button class="primary-button" type="submit">
+              <span aria-hidden="true">＋</span>
+              添加
+            </button>
+            <p class="form-message" id="formMessage" aria-live="polite"></p>
+          </form>
+
+          <div class="habit-list" id="habitList"></div>
+
+          <div class="empty-state" id="emptyState" hidden>
+            <div class="empty-illustration" aria-hidden="true">
+              <span>✦</span>
+              <i></i>
+            </div>
+            <h3>写下今天想坚持的第一件事</h3>
+            <p>哪怕只是喝一杯水，也算认真生活。</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span>一天一页，慢慢积累。</span>
+        <span id="footerDate"></span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span id="toastText"></span>
+      <button type="button" id="undoButton">撤销</button>
+    </div>
+
+    <template id="habitTemplate">
+      <article class="habit-item">
+        <button
+          class="check-button"
+          type="button"
+          role="checkbox"
+          aria-checked="false"
+        >
+          <span class="check-mark" aria-hidden="true"></span>
+        </button>
+        <span class="habit-icon" aria-hidden="true"></span>
+        <div class="habit-copy">
+          <h3 class="habit-name"></h3>
+          <p class="habit-status"></p>
+        </div>
+        <button class="delete-button" type="button" aria-label="删除习惯">
+          <span aria-hidden="true">×</span>
+        </button>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
